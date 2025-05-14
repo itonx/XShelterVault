@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="XShelterVault.Presentation.ConfirmMasterKeyPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:XShelterVault.Presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uen="using:Uno.Extensions.Navigation.UI"
+    xmlns:utu="using:Uno.Toolkit.UI"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <ScrollViewer IsTabStop="True">
+        <Grid utu:SafeArea.Insets="VisibleBounds">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <utu:NavigationBar Content="{Binding Title}" />
+            <StackPanel Grid.Row="1" Style="{StaticResource ShelterVault.MasterKey.StackPanel}">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontFamily="Consolas"
+                    Text=" ███████████████╗                         ▐█████▌  &#x0a; ██░░░░░░░░░░░██║                        ██  ▄  ██ &#x0a; ██░░░░███░░░░██║  ███████████████████████  ▐▐  ██ &#x0a; ██░░░░░█░░░░░██║   ██ ▀ ▀ ▀ █ ▀   ▀ █   ██  ▀  ██ &#x0a; ██░░░░░█░░░░░██║   █        ▀            ▐█████▌  &#x0a; ██░░░░░░░░░░░██║                                  &#x0a; ███████████████║                                  &#x0a; ╚══════════════╝                                  &#x0a;" />
+                <Grid ColumnSpacing="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ComboBox
+                        DisplayMemberPath="Name"
+                        Header="Vault:"
+                        ItemsSource="{Binding Vaults}"
+                        SelectedIndex="0"
+                        SelectedItem="{Binding SelectedVault, Mode=TwoWay}"
+                        Style="{ThemeResource ShelterVaultComboBox}" />
+                    <Button
+                        x:Name="NewVault"
+                        x:Uid="NewVaultButton"
+                        Grid.Column="1"
+                        Command="{Binding NewVaultCommand}"
+                        Style="{ThemeResource ShelterVault.MasterKey.Button.Add}">
+                        <FontIcon
+                            FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                            FontSize="25"
+                            Glyph="&#xE710;" />
+                    </Button>
+                </Grid>
+                <PasswordBox
+                    x:Name="password"
+                    x:Uid="TitleMasterKey"
+                    Header="Master key:"
+                    KeyDown="password_KeyDown"
+                    Style="{ThemeResource ShelterVault.MasterKey.PasswordBox}" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
