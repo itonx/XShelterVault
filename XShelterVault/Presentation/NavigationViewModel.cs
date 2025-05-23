@@ -41,11 +41,6 @@ namespace XShelterVault.Presentation
         private void RegisterMessages()
         {
             _weakReferenceInstanceManager.AddInstance(this);
-            WeakReferenceMessenger.Default.Register<NavigationViewModel, ShowPageRequestMessage>(this, (viewModel, payload) =>
-            {
-                //if (payload.Value == Shared.Enums.ShelterVaultPage.HOME || payload.Value == Shared.Enums.ShelterVaultPage.SETTINGS)
-                //    viewModel.SelectedMenuItem = payload.Value.ToString();
-            });
             WeakReferenceMessenger.Default.Register<NavigationViewModel, RefreshCredentialListRequestMessage>(this, (viewModel, payload) =>
             {
                 // _uiThreadService.Execute(() =>

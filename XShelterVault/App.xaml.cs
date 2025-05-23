@@ -17,7 +17,7 @@ public partial class App : Application
     }
 
     public static Window? MainWindow { get; private set; }
-    protected IHost? Host { get; private set; }
+    public static IHost? Host { get; private set; }
 
     protected async override void OnLaunched(LaunchActivatedEventArgs args)
     {
@@ -98,6 +98,7 @@ public partial class App : Application
 
                     // ViewModels
                     services.AddTransient<PasswordConfirmationViewModel>();
+                    services.AddTransient<CredentialsViewModel>();
                 })
                 .UseNavigation(RegisterRoutes)
             );

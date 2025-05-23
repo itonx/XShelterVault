@@ -1,6 +1,8 @@
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
+using CommunityToolkit.Mvvm.Messaging;
 using ShelterVault.Models;
+using ShelterVault.Shared.Messages;
 
 namespace XShelterVault.Presentation
 {
@@ -14,6 +16,7 @@ namespace XShelterVault.Presentation
             this.InitializeComponent();
             this.Loaded += NavigationViewPage_Loaded;
             this.CredentialsMenu.DataContextChanged += CredentialsMenu_DataContextChanged;
+            RegisterMessages();
         }
 
         private void NavigationViewPage_Loaded(object sender, RoutedEventArgs e)
@@ -32,7 +35,7 @@ namespace XShelterVault.Presentation
                     {
                         NavigationViewItem navigationViewItem = new() { Content = credentialsViewItem.Title, Icon = new FontIcon() { Glyph = "\uE72E" }, Tag = credentialsViewItem };
                         navigationViewItem.SetValue(ToolTipService.ToolTipProperty, credentialsViewItem.Title);
-                        //navigationViewItem.SetValue(PageLoaderBehavior.PageTypeProperty, typeof(CredentialsPage));
+                        navigationViewItem.PointerReleased += NavigationViewItem_PointerReleased;
                         this.CredentialsMenu.MenuItems.Add(navigationViewItem);
                     }
                 }
@@ -41,6 +44,25 @@ namespace XShelterVault.Presentation
                     this.CredentialsMenu.Visibility = Visibility.Collapsed;
                 }
             }
+        }
+
+        private void NavigationViewItem_PointerReleased(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            var selectedCredential = sender as NavigationViewItem;
+            if (selectedCredential != null && selectedCredential.IsSelected)
+            {
+                this.AppContent.Navigate(typeof(CredentialsPage));
+                var cvm = (this.AppContent.Content as CredentialsPage).DataContext as CredentialsViewModel;
+                cvm.OnNavigated(selectedCredential.Tag);
+            }
+        }
+
+        private void RegisterMessages()
+        {
+            WeakReferenceMessenger.Default.Register<NavigationViewPage, ShowPageRequestMessage>(this, (viewModel, payload) =>
+            {
+                this.AppContent.Navigate(payload.Value);
+            });
         }
     }
 }

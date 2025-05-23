@@ -1,11 +1,10 @@
-﻿using CommunityToolkit.Mvvm.Messaging.Messages;
-using ShelterVault.Shared.Enums;
+using CommunityToolkit.Mvvm.Messaging.Messages;
 
 namespace ShelterVault.Shared.Messages
 {
-    public class ShowPageRequestMessage : ValueChangedMessage<ShelterVaultPage>
+    public class ShowPageRequestMessage : ValueChangedMessage<Type>
     {
-        public ShowPageRequestMessage(ShelterVaultPage value) : base(value)
+        public ShowPageRequestMessage(Type value) : base(value)
         {
         }
     }

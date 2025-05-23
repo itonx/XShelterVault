@@ -1,9 +1,7 @@
-﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 using ShelterVault.Models;
-using System;
 
-namespace ShelterVault.Shared.Converters
+namespace XShelterVault.Converters
 {
     public class CredentialsViewModelStateToVisibilityConverter : IValueConverter
     {
