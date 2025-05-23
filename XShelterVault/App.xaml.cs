@@ -117,7 +117,8 @@ public partial class App : Application
             new ViewMap(ViewModel: typeof(ShellViewModel)),
             new ViewMap<MainPage, MainViewModel>(),
             new ViewMap<ConfirmMasterKeyPage, ConfirmMasterKeyViewModel>(),
-            new ViewMap<CreateMasterKeyPage, CreateMasterKeyViewModel>()
+            new ViewMap<CreateMasterKeyPage, CreateMasterKeyViewModel>(),
+            new ViewMap<NavigationViewPage, NavigationViewModel>()
         );
 
         routes.Register(
@@ -127,6 +128,7 @@ public partial class App : Application
                     new ("Main", View: views.FindByViewModel<MainViewModel>(), IsDefault:true),
                     new ("ConfirmMasterKeyPage", View: views.FindByViewModel<ConfirmMasterKeyViewModel>()),
                     new ("CreateMasterKeyPage", View: views.FindByViewModel<CreateMasterKeyViewModel>()),
+                    new ("NavigationViewPage", View: views.FindByViewModel<NavigationViewModel>()),
                 ]
             )
         );

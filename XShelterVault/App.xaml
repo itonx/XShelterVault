@@ -164,6 +164,8 @@
                 <Setter Property="PaneDisplayMode" Value="Left" />
                 <Setter Property="OpenPaneLength" Value="280" />
                 <Setter Property="IsPaneToggleButtonVisible" Value="False" />
+                <Setter Property="BorderBrush" Value="Gray" />
+                <Setter Property="BorderThickness" Value="1" />
             </Style>
             <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="ContentDialog">
                 <Setter Property="Foreground" Value="{ThemeResource ShelterVaultForeground}" />

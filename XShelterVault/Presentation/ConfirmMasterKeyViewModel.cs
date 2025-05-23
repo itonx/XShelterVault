@@ -54,7 +54,7 @@ public partial class ConfirmMasterKeyViewModel : ObservableObject
             {
                 _shelterVaultLocalDb.SetDbName(SelectedVault.Name);
                 _shelterVaultStateService.SetVault(SelectedVault, parameter?.ToString());
-                await _navigator.NavigateViewModelAsync<ConfirmMasterKeyViewModel>(this);
+                await _navigator.NavigateViewModelAsync<NavigationViewModel>(this);
             }
             //else await _dialogManager.ShowConfirmationDialogAsync(LangResourceKeys.DIALOG_WRONG_MASTER_KEY);
         }
